@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "api": "json-server ./db/db.js --port 4000"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "mockjs": "^1.0.1-beta3"
+  }
+}

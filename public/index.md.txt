@@ -1,0 +1,73 @@
+1.npm install json-server -g
+
+2.npm install
+
+3.npm run mock
+
+4.浏览器打开 http://localhost:4000
+
+5.用法：
+
+GET
+这个时候访问 http://localhost:3003/db 可以查看 db.json 文件中所定义的全部数据。
+使用浏览器地址栏，jQuery.get 或 fecth({method: "get"}) 访问 http://localhost:3003/news ，则可以看到 news 对象下的数据,以Array格式返回:
+
+[
+  {
+    "id": 1,
+    "title": "曹县宣布昨日晚间登日成功",
+    "date": "2016-08-12",
+    "likes": 55,
+    "views": 100086
+  },
+  {
+    "id": 2,
+    "title": "长江流域首次发现海豚",
+    "date": "2016-08-12",
+    "likes": 505,
+    "views": 9800
+  }
+]
+POST
+以jquery的 $.ajax 方法举例,以下代码会实时的向 db.json 中的 news 对象push一条新的数据再次用 get 方式访问 http://localhost:3003/news , 就可以看到它了
+
+$.ajax({
+    type: 'post',
+    url: 'http://localhost:3003/news',
+    data: {
+      "id": 3,
+      "title": "我是新加入的新闻",
+      "date": "2016-08-12",
+      "likes": 0,
+      "views": 0
+    }
+  }
+)
+PUT
+同样以jquery的 $.ajax 方法举例,以下代码会实时的对 db.json 中的 news 对象中 id=1 数据进行修改
+
+ 
+$.ajax({
+    type: 'put',
+    url: 'http://localhost:3003/news/1',
+    data: {
+      "title": "曹县宣布昨日晚间登日失败",
+      "date": "2016-08-12",
+      "likes": 55,
+      "views": 100086
+    }
+  }
+)
+
+// 结果
+
+[
+  {
+    "id": 1,
+    "title": "曹县宣布昨日晚间登日失败",
+    "date": "2016-08-12",
+    "likes": 55,
+    "views": 100086
+  }
+]
+PATCH 和 DELETE 使用方式同上，就不做演示了。
